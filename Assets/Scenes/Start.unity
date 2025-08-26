@@ -562,6 +562,7 @@ MonoBehaviour:
   figNum: 0
   resTime: 0
   gameTime2: 0
+  TriggerThresholdX: 0
 --- !u!4 &1980760285
 Transform:
   m_ObjectHideFlags: 0
