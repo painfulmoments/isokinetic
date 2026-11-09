@@ -1,75 +1,77 @@
 # Isokinetic Dash
 
-Unity 3D 康复跑酷游戏原型，完整项目名为 `Isokinetic Dash`。本项目面向中风患者的腕关节等速康复训练设计，尝试把康复动作映射到更直观、更有反馈感的跑酷闯关流程中，让训练过程更容易理解与坚持。
+Isokinetic Dash is a Unity 3D rehabilitation runner prototype designed around isokinetic wrist training for stroke rehabilitation. It explores how rehabilitation movements can be mapped to an intuitive runner game with clear feedback, making training easier to understand and follow.
 
 ![Isokinetic Dash Home](docs/images/hero-home.png)
 
-## 下载试玩
+## Download and Play
 
-- Windows 可执行版本：[IsokineticDash-Windows.zip](https://github.com/painfulmoments/isokinetic/releases/latest/download/IsokineticDash-Windows.zip)
+- Windows build: [IsokineticDash-Windows.zip](https://github.com/painfulmoments/isokinetic/releases/latest/download/IsokineticDash-Windows.zip)
+- [Release page](https://github.com/painfulmoments/isokinetic/releases/tag/playable-v1.0.0)
 
-## 项目定位
+Download and extract the entire ZIP before launching `IsokineticDash.exe`. Keep the executable, `UnityPlayer.dll`, `MonoBleedingEdge`, and `IsokineticDash_Data` together. Unity Hub and the Unity Editor are only needed to work with the source project.
 
-- 面向人群：中风患者腕关节康复训练用户
-- 项目类型：Unity 3D 康复跑酷游戏 / 康复训练交互原型
-- 核心目标：把等速康复训练与轻量跑酷玩法结合起来
-- 主要场景：`Assets/Scenes/Start.unity`、`Assets/Scenes/SampleScene.unity`
-- 目标平台：`Windows`
+## Project Overview
 
-## 操作说明
+- Intended users: people undergoing wrist rehabilitation after a stroke
+- Project type: Unity 3D rehabilitation runner and training interaction prototype
+- Core goal: combine isokinetic rehabilitation training with lightweight runner gameplay
+- Main scenes: `Assets/Scenes/Start.unity` and `Assets/Scenes/SampleScene.unity`
+- Target platform: Windows
 
-- 鼠标右键：奔跑 / 持续前进
-- 鼠标左键：转向
-- `Esc`：暂停或恢复游戏
+## Controls
 
-说明：
-在当前项目实现里，角色的主玩法输入以鼠标为主。右键控制前进，左键在转向判定或慢动作提示出现时执行转向。
+- Hold the right mouse button: run / move forward
+- Left mouse button: turn when the slow-motion turn prompt appears
+- `Esc`: pause or resume the game
 
-## 运行要求
+The current gameplay implementation primarily uses mouse input. Hold the right mouse button to move forward, then left-click when prompted at a corner to turn.
 
-- `Unity Hub`
-- `Unity 2022.3.52f1c1`
-- `URP 14.0.11`
-- `Windows` 开发或运行环境
+## Development Requirements
 
-如果需要联调康复硬件链路，还需要额外准备：
+- Unity Hub
+- Unity 2022.3.52f1c1
+- Universal Render Pipeline (URP) 14.0.11
+- Windows development environment
 
-- `PEAK PCAN` 驱动与运行库
-- 编码器 / CAN 相关外部硬件
-- 可选的 `Qt + UDP` 联调程序
-- 可选的 `MySQL` 数据库环境
+To test the rehabilitation hardware integration, additional components are required:
 
-## 宣传图片
+- PEAK PCAN drivers and runtime libraries
+- External encoder / CAN hardware
+- Optional Qt + UDP integration application
+- Optional MySQL database environment
 
-主页图：
+## Screenshots
+
+Home screen:
 
 ![Isokinetic Dash Hero](docs/images/hero-home.png)
 
-游戏画面：
+Gameplay:
 
 ![Gameplay 01](docs/images/gameplay-01.png)
 
 ![Gameplay 02](docs/images/gameplay-02.png)
 
-结算与失败界面：
+Win and failure screens:
 
 ![Win Screen](docs/images/win-screen.png)
 
 ![Fail Screen](docs/images/fail-screen.png)
 
-## 项目亮点
+## Highlights
 
-- 以康复训练为目标，而不是单纯的休闲跑酷
-- 使用转角、慢动作提示和节奏反馈强化训练动作完成感
-- 保留外部设备联调能力，便于继续接入康复系统
-- 已包含主菜单、暂停、胜利、失败、自动重开等完整基础流程
+- Designed around rehabilitation training goals
+- Uses corners, slow-motion prompts, and rhythmic feedback to reinforce completed movements
+- Retains external device integration modules for further rehabilitation system development
+- Includes a main menu, pause controls, win and failure screens, and automatic restart behavior
 
-## 项目结构
+## Project Structure
 
 ```text
 isokinetic/
 ├─ Assets/
-│  ├─ Plugins/                  # 第三方 DLL，例如 MathNet、MySql.Data
+│  ├─ Plugins/                  # Third-party DLLs, including MathNet and MySql.Data
 │  ├─ Resources/
 │  │  ├─ Materials/
 │  │  ├─ Player/
@@ -94,32 +96,30 @@ isokinetic/
 └─ ProjectSettings/
 ```
 
-## 关键系统
+## Key Systems
 
-- `BallMovementController`：角色移动、转向、胜负与重开
-- `GroundSpawnController`：道路地块生成与补块
-- `CornerTrigger`：转角触发与慢动作时机
-- `SlowMotionUI`：转向提示 UI
-- `PauseController`：暂停与返回主菜单
-- `ReadConfig`：读取 `config/config.ini`
-- `EncoderManager`：编码器 / CAN 数据读取与角度映射
+- `BallMovementController`: character movement, turning, win conditions, and restart behavior
+- `GroundSpawnController`: road tile generation and replenishment
+- `CornerTrigger`: corner detection and slow-motion timing
+- `SlowMotionUI`: turn prompt interface
+- `PauseController`: pausing and returning to the main menu
+- `ReadConfig`: reads `config/config.ini`
+- `EncoderManager`: encoder / CAN data acquisition and angle mapping
 
-## 快速开始
+## Open the Source Project
 
-1. 使用 `Unity Hub` 打开项目根目录。
-2. 选择 `Unity 2022.3.52f1c1` 打开工程。
-3. 检查 `config/config.ini`，按本机环境调整设备、UDP、数据库参数。
-4. 打开 `Assets/Scenes/Start.unity`。
-5. 点击 Unity 编辑器中的 `Play` 进入游戏。
+1. Add the repository root as a project in Unity Hub.
+2. Open it with Unity 2022.3.52f1c1.
+3. Review `config/config.ini` and adjust the device, UDP, and database settings for your environment.
+4. Open `Assets/Scenes/Start.unity`.
+5. Click **Play** in the Unity Editor.
 
-## 当前状态说明
+## Current Status
 
-- 当前可直接验证的主玩法控制方式是鼠标操作
-- 项目中保留了康复硬件与编码器读取模块
-- 若要完整跑通硬件联调，需要补齐设备、驱动和外部程序环境
+- Mouse input is the primary gameplay control path available for testing.
+- Rehabilitation hardware and encoder modules remain in the project.
+- Full hardware integration requires the corresponding devices, drivers, and external applications.
 
-## 详细项目指南
+## Detailed Project Guide
 
-更完整的项目结构分析、脚本职责说明、外设链路和接手建议见：
-
-- [docs/PROJECT_GUIDE.md](docs/PROJECT_GUIDE.md)
+For a more detailed project structure analysis, script responsibilities, peripheral integration, and handover notes, see [docs/PROJECT_GUIDE.md](docs/PROJECT_GUIDE.md) (in Chinese).
